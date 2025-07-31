@@ -102,9 +102,9 @@ friction_factor_tshirt = (low + high) / 2
 friction_factor_stress = friction_factor_tshirt * 0.5
 
 # --- STREAMLIT UI ---
-st.title("Projectile Launcher Simulation (Realistic Model)")
+st.title("Koops T-Shirt Cannon Simulator")
 psi = st.slider("Pressure (PSI)", 40, 120, 100, step=5)
-angle = st.slider("Launch Angle (°)", 10, 60, 45, step=1)
+angle = st.slider("Launch Angle (°)", 0, 85, 45, step=1)
 
 fig = go.Figure()
 
@@ -136,10 +136,10 @@ range_stress_ft = round(x_stress[-1] * 3.281, 1)
 impact_speed_tshirt = speed_at_distance(objects["T-shirt"]["mass"], objects["T-shirt"]["diam"], v_tshirt, angle, 50 * 0.3048)
 impact_speed_tshirt_mph = impact_speed_tshirt * 2.237
 
-energy_tshirt = 0.5 * objects["T-shirt"]["mass"] * v_tshirt**2
+launch_speed_tshirt_mph = v_tshirt * 2.237
 
 st.subheader("Simulation Details")
+st.write(f"**T-shirt Launch Speed:** {launch_speed_tshirt_mph:.1f} mph")
 st.write(f"**T-shirt Final Range:** {range_tshirt_ft} ft")
 st.write(f"**Stress Ball Final Range:** {range_stress_ft} ft")
 st.write(f"**T-shirt Speed at 50 ft:** {impact_speed_tshirt_mph:.1f} mph")
-st.write(f"**T-shirt Launch Energy:** {energy_tshirt:.1f} Joules")
