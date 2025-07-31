@@ -104,7 +104,7 @@ friction_factor_stress = friction_factor_tshirt * 0.5
 # --- STREAMLIT UI ---
 st.title("Koops T-Shirt Cannon Simulator")
 psi = st.slider("Pressure (PSI)", 40, 120, 100, step=5)
-angle = st.slider("Launch Angle (°)", 0, 85, 45, step=1)
+angle = st.slider("Launch Angle (°)", 1, 85, 45, step=1)
 
 fig = go.Figure()
 
@@ -124,10 +124,13 @@ fig.update_layout(
     yaxis_title="Height (ft)",
     template="plotly_dark",
     width=800,
-    height=500
+    height=500,
+    xaxis=dict(range=[0, 230]),   # FIXED MAX X RANGE
+    yaxis=dict(range=[0, 130])    # FIXED MAX Y RANGE
 )
 
 st.plotly_chart(fig)
+
 
 # --- Stats Panel ---
 range_tshirt_ft = round(x_tshirt[-1] * 3.281, 1)
